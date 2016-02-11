@@ -1,10 +1,11 @@
 # BitTalk-Server
 <br>
-BitTalk 서버용 페이지<br>
 <h4>URL</h4>
-회원 리스트 받는 URL: <b>192.168.1.35/BitTalk-Server/index.jsp</b><br> 
-로그인할 URL: <b>192.168.1.35/BitTalk-Server/login.jsp</b><br>
-Parameter : <b>mid / mpasswd</b>
+회원 리스트 보기 URL: <b>192.168.1.35/BitTalkServer/index.jsp</b><br> 
+로그인할 URL: <b>192.168.1.35/BitTalkServer/login.jsp</b><br>
+Parameter : <b>mid / mpasswd</b><br>
+회원가입 URL: <b>192.168.1.35/BitTalkServer/join.jsp</b><br>
+Parameter : <b>mid / mpasswd / mname</b>
 <hr>
 <h5>회원 예제 데이터</h5>
 <ol>
@@ -22,3 +23,4 @@ Parameter : <b>mid / mpasswd</b>
     <li>mname: 양우리</li>
   </ul>
 </ol>
+
