@@ -15,7 +15,11 @@
 		%>{"result":"fail"}<%
 		System.out.println(mid+" "+mpasswd);
 	}else if(loginMember != null && loginMember.getMpasswd().equals(mpasswd)){
-		%>{"result":"success"}<%
+		%>{"result":"success",
+			"member":{"mno":<%=loginMember.getMno()%>,
+						"mid":<%=loginMember.getMid()%>,
+						"mpasswd":<%=loginMember.getMpasswd()%>,
+						"mname":<%=loginMember.getMname()%>}}<%
 		System.out.println(mid+" "+mpasswd);
 	}else{
 		%>{"result":"fail"}<%
