@@ -7,23 +7,36 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>BitTalk 회원예제</title>
+<style>
+th {
+margin:5px;
+padding:5px;
+}
+td{
+margin:5px;
+padding:5px;
+}
+</style>
 </head>
 <body>
 <h1>회원목록</h1>
-
+	<table>
+	<tr>
+		<th>mno</th><th>mid</th><th>mpasswd</th><th>mname</th>
+	</tr>
 	<%
 		MemberDAO dao = new MemberDAO();
 		List<MemberDTO> memberList = dao.getMemberList();
 		for(int i = 0; i < memberList.size(); i++){
 			MemberDTO member = memberList.get(i);
-	%>
-			<%=member.getMno() %><br>
-			<%=member.getMid() %><br>
-			<%=member.getMpasswd() %><br>
-			<%=member.getMname() %><br>
-	
+	%><tr>
+			<td><%=member.getMno()%></td>
+			<td><%=member.getMid() %></td>
+			<td><%=member.getMpasswd() %></td>
+			<td><%=member.getMname() %></td>
+	</tr>
 	<%}//for end %>
-
+</table>
 </body>
 </html>
