@@ -13,13 +13,13 @@
 	
 	if(loginMember == null){
 		%>{"result":"fail"}<%
-		System.out.println(mid+mpasswd);
+		System.out.println(mid+" "+mpasswd);
 	}else if(loginMember != null && loginMember.getMpasswd().equals(mpasswd)){
 		%>{"result":"success"}<%
-		System.out.println(mid+mpasswd);
+		System.out.println(mid+" "+mpasswd);
 	}else{
 		%>{"result":"fail"}<%
-		System.out.println(mid+mpasswd);
+		System.out.println(mid+" "+mpasswd);
 	}
 
 

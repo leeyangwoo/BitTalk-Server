@@ -93,4 +93,25 @@ public class MemberDAO {
 		
 		return member;
 	}
+	
+	public int setMember(MemberDTO member){
+		int resultCount = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try{
+			conn = DBUtil.getConnection();
+			String sql = "insert into member(mid, mpasswd, mname) values(?,?,?)";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, member.getMid());
+			stmt.setString(2, member.getMpasswd());
+			stmt.setString(3, member.getMname());
+			
+			resultCount = stmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(conn, stmt);
+		}
+		return resultCount;
+	}
 }
