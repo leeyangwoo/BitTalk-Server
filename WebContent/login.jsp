@@ -11,9 +11,11 @@
 	MemberDTO loginMember = dao.getMember(mid);
 	
 	if(loginMember == null){
-		
+		%>0<%
 	}else if(loginMember != null && loginMember.getMpasswd().equals(mpasswd)){
-		
+		%>1<%
+	}else{
+		%>0<%
 	}
 
 
