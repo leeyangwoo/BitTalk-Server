@@ -1,8 +1,9 @@
 <%@ page import="dao.MemberDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="dto.MemberDTO" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="application/json"
     pageEncoding="UTF-8"%>
+
 <%
 	String mid = request.getParameter("mid");
 	String mpasswd = request.getParameter("mpasswd");
@@ -11,11 +12,14 @@
 	MemberDTO loginMember = dao.getMember(mid);
 	
 	if(loginMember == null){
-		%>0<%
+		%>{"result":"fail"}<%
+		System.out.println(mid+mpasswd);
 	}else if(loginMember != null && loginMember.getMpasswd().equals(mpasswd)){
-		%>1<%
+		%>{"result":"success"}<%
+		System.out.println(mid+mpasswd);
 	}else{
-		%>0<%
+		%>{"result":"fail"}<%
+		System.out.println(mid+mpasswd);
 	}
 
 
