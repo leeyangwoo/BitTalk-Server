@@ -45,10 +45,10 @@ padding:5px;
 	</tr>
 	<%}//for end %>
 </table>
-
+               <!----------  아직 안됨  ---------------  -->
 <h1>회원 검색</h1>
 <input type="text" id="src"/>
-<input type="button" id="srcBtn" value="검색"/>
+<input type="button" id="srcBtn" value="검색"/> 여기서 검색하는건 아직 안됨.. <a href="src.jsp">/src.jsp?mid=아이디</a>
 	<table>
 	<tr>
 		<th>mno</th><th>mid</th><th>mpasswd</th><th>mname</th>
@@ -68,7 +68,7 @@ padding:5px;
 </tr>
 <%}//for end %>
 </table>
-
+                                <!-- --------------------- -->
 <h1>채팅방목록</h1>
 	<table>
 	<tr>
