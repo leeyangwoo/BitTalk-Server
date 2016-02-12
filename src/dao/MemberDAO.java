@@ -36,15 +36,15 @@ public class MemberDAO {
 		return memberList;
 	}
 	
-	public List<MemberDTO> getMemberList(String mid){           // 문자열포함된 아이디로 리스트 검색
+	public List<MemberDTO> searchMemberList(String mid){           // 문자열포함된 아이디로 리스트 검색
 		List<MemberDTO> memberList = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try{
 			conn = DBUtil.getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM member WHERE mid LIKE '%?%';");
-			stmt.setString(1, mid);
+			stmt = conn.prepareStatement("SELECT * FROM member WHERE mid LIKE ?;");
+			stmt.setString(1, "%"+mid+"%");
 			rs = stmt.executeQuery();
 			while(rs.next()){
 				MemberDTO member = new MemberDTO();
