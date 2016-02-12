@@ -1,3 +1,7 @@
+<%@ page import="dao.ParticipateDAO" %>
+<%@ page import="dto.ParticipateDTO" %>
+<%@ page import="dao.ChatroomDAO" %>
+<%@ page import="dto.ChatroomDTO" %>
 <%@ page import="dao.MemberDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="dto.MemberDTO" %>
@@ -7,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>BitTalk 회원예제</title>
+<title>BitTalk 테이블리스트</title>
 <style>
 th {
 margin:5px;
@@ -38,5 +42,40 @@ padding:5px;
 	</tr>
 	<%}//for end %>
 </table>
+
+<h1>채팅방목록</h1>
+	<table>
+	<tr>
+		<th>crno</th><th>numparticipant</th>
+	</tr>
+	<%
+		ChatroomDAO crDao = new ChatroomDAO();
+		List<ChatroomDTO> chatroomList = crDao.getChatroomList(); 
+		for(int i = 0; i < chatroomList.size(); i++){
+			ChatroomDTO chatroom = chatroomList.get(i);
+	%><tr>
+			<td><%=chatroom.getCrno()%></td>
+			<td><%=chatroom.getNumparticipant() %></td>
+	</tr>
+	<%}//for end %>
+</table>
+<h1>참가목록</h1>
+	<table>
+	<tr>
+		<th>mno</th><th>crno</th>
+	</tr>
+	<%
+		ParticipateDAO pDao = new ParticipateDAO();
+		List<ParticipateDTO> partList = pDao.getPartList(); 
+		for(int i = 0; i < partList.size(); i++){
+			ParticipateDTO part = partList.get(i);
+	%><tr>
+			<td><%=part.getMno()%></td>
+			<td><%=part.getCrno() %></td>
+	</tr>
+	<%}//for end %>
+</table>
+
+ 
 </body>
 </html>

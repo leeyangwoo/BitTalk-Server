@@ -1,6 +1,6 @@
 package dto;
 
-public class ChatRoomDTO {
+public class ChatroomDTO {
 	private int crno;
 	private int numparticipant;
 	public int getCrno() {

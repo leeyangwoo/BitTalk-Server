@@ -2,7 +2,7 @@ package dto;
 
 import java.util.Date;
 
-public class chatmsgDTO {
+public class ChatmsgDTO {
 	private int cmno;
 	private int crno;
 	private int senderno;

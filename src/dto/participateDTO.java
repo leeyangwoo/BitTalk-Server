@@ -1,6 +1,6 @@
 package dto;
 
-public class participateDTO {
+public class ParticipateDTO {
 	private int mno;
 	private int crno;
 	public int getMno() {
