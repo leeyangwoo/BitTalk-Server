@@ -22,6 +22,9 @@ margin:5px;
 padding:5px;
 }
 </style>
+<script>
+
+</script>
 </head>
 <body>
 <h1>회원목록</h1>
@@ -41,6 +44,29 @@ padding:5px;
 			<td><%=member.getMname() %></td>
 	</tr>
 	<%}//for end %>
+</table>
+
+<h1>회원 검색</h1>
+<input type="text" id="src"/>
+<input type="button" id="srcBtn" value="검색"/>
+	<table>
+	<tr>
+		<th>mno</th><th>mid</th><th>mpasswd</th><th>mname</th>
+	</tr>
+
+<%
+	String mid = request.getParameter("mid");
+	MemberDAO mDAO = new MemberDAO();
+	List<MemberDTO> smemberList = mDAO.searchMemberList(mid);
+	for(int i = 0; i < smemberList.size(); i++){
+		MemberDTO member = memberList.get(i);
+%><tr>
+		<td><%=member.getMno()%></td>
+		<td><%=member.getMid() %></td>
+		<td><%=member.getMpasswd() %></td>
+		<td><%=member.getMname() %></td>
+</tr>
+<%}//for end %>
 </table>
 
 <h1>채팅방목록</h1>
