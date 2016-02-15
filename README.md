@@ -9,29 +9,13 @@ Parameter : <b>mid / mpasswd</b><br>
 Parameter : <b>mid / mpasswd / mname</b><br>
 <br>
 대화 시작하기 URL: <b>192.168.1.35/BitTalkServer/talk.jsp</b> (mainsrc에서 id검색 후 대화시작)<br>
-Parameter : <b>mid(대화방 개설자)</b><br>
+Parameter : <b>mno1</b>(대화방개설자)/ <b>mno2</b>(초대받은 사람)<br>
 return : {"result":"success"} / {"result":"fail"}<br>
 <br>
 문자열포함하는 아이디 검색 URL: <b>192.168.1.35/BitTalkServer/search.jsp</b> (mainsrc에서 id검색)<br>
-Parameter : <b>mid(mid 정확히 입력하지 않아도 검색가능)</b><br>
-return ex) <br>[{"mno":3,"mid":"dd","mpasswd":"1112","mname":"fff"},{"mno":6,"mid":"asdasd","mpasswd":"1234","mname":"asss"}]<br>
-값이 없으면 []<br>
+Parameter : <b>mid</b>(mid 정확히 입력하지 않아도 검색가능)<br>
+return ex) <br>
+값이 2개일때 [{"mno":3,"mid":"dd","mpasswd":"1112","mname":"fff"},{"mno":6,"mid":"asdasd","mpasswd":"1234","mname":"asss"}]<br>
+값이 없을때 []<br>
 값 가져오는 법 ex) json[0].mno == 3 / json[1].mname.equals("asss")
 <hr>
-<h5>회원 예제 데이터</h5>
-<ol>
-  <ul>
-    <li>mno: 1</li>
-    <li>mid: leeyang</li>
-    <li>mpasswd: 1111</li>
-    <li>mname: 이양우</li>
-  </ul>
-  <br>
-  <ul>
-    <li>mno: 2</li>
-    <li>mid: yangwoo</li>
-    <li>mpasswd: 1112</li>
-    <li>mname: 양우리</li>
-  </ul>
-</ol>
-
