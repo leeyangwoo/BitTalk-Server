@@ -17,7 +17,7 @@ public class ParticipateDAO {
 		ResultSet rs = null;
 		try{
 			conn = DBUtil.getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM participate;");
+			stmt = conn.prepareStatement("SELECT * FROM participate ORDER BY crno ASC;");
 			rs = stmt.executeQuery();
 			while(rs.next()){
 				ParticipateDTO part = new ParticipateDTO();
