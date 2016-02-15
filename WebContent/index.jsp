@@ -1,5 +1,7 @@
 <%@ page import="dao.ParticipateDAO" %>
 <%@ page import="dto.ParticipateDTO" %>
+<%@ page import="dao.ChatmsgDAO" %>
+<%@ page import="dto.ChatmsgDTO" %>
 <%@ page import="dao.ChatroomDAO" %>
 <%@ page import="dto.ChatroomDTO" %>
 <%@ page import="dao.MemberDAO" %>
@@ -101,7 +103,25 @@ padding:5px;
 	</tr>
 	<%}//for end %>
 </table>
-
+<h1>메세지목록</h1>
+	<table>
+	<tr>
+		<th>cmno</th><th>crno</th><th>senderno</th><th>msg</th><th>sendtime</th>
+	</tr>
+	<%
+		ChatmsgDAO cmDao = new ChatmsgDAO();
+		List<ChatmsgDTO> msgList = cmDao.getChatmsgList();
+		for(int i = 0; i < msgList.size(); i++){
+			ChatmsgDTO msg = msgList.get(i);
+	%><tr>
+			<td><%=msg.getCmno()%></td>
+			<td><%=msg.getCrno() %></td>
+			<td><%=msg.getSenderno() %></td>
+			<td><%=msg.getMsg() %></td>
+			<td><%=msg.getSendtime() %></td>
+	</tr>
+	<%}//for end %>
+</table>
  
 </body>
 </html>

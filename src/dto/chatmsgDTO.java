@@ -1,5 +1,6 @@
 package dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ChatmsgDTO {
@@ -7,7 +8,7 @@ public class ChatmsgDTO {
 	private int crno;
 	private int senderno;
 	private String msg;
-	private Date sendtime;
+	private Timestamp sendtime;
 	public int getCmno() {
 		return cmno;
 	}
@@ -35,7 +36,7 @@ public class ChatmsgDTO {
 	public Date getSendtime() {
 		return sendtime;
 	}
-	public void setSendtime(Date sendtime) {
+	public void setSendtime(Timestamp sendtime) {
 		this.sendtime = sendtime;
 	}
 	

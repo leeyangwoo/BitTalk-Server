@@ -34,8 +34,29 @@ public class ChatroomDAO {
 		return chatroomList;
 	}
 	
+	public List<ChatroomDTO> getMyChatroom(int mno){
+		List<ChatroomDTO> chatroomList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement stmt =null;
+		ResultSet rs = null;
+		try{
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement("SELECT * FROM participate AS p INNER JOIN chatroom AS a ON p.crno = a.crno WHERE mno=?;");
+			stmt.setInt(1, mno);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{		
+			DBUtil.close(conn, stmt, rs);
+		}
+		return chatroomList;
+	}
 	
-	public int setChatroom(int mno1, int mno2){                                    //id받아 채팅방 개설
+	
+	public int setChatroom(int mno1, int mno2){            //id받아 채팅방 개설
 		int isSuccess = 0;
 		int goStop = checkTalk(mno1,mno2);
 		
@@ -75,7 +96,7 @@ public class ChatroomDAO {
 		return isSuccess;
 	}
 	
-	public int checkTalk(int mno1, int mno2){
+	public int checkTalk(int mno1, int mno2){     //대화중인 방이 있는지 확인
 		int numOfRoom = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
