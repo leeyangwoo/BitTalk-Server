@@ -76,7 +76,7 @@ public class ChatroomDAO {
 				stmt = conn.prepareStatement("SELECT * FROM participate;");  //임시 문장
 				
 				conn.setAutoCommit(false); // 트랜잭션 시작
-				stmt.executeUpdate("INSERT INTO chatroom(numparticipant) VALUES(2);"); //chatroom 테이블에 인원수 2 레코드 추가
+				stmt.executeUpdate("INSERT INTO chatroom(numparticipant) VALUES(1);"); //chatroom 테이블에 인원수 2 레코드 추가
 				stmt.executeUpdate("INSERT INTO participate VALUES("+mno1+","
 						+ "(SELECT crno FROM chatroom ORDER BY crno DESC LIMIT 1));"); // 가장 최근에 개설된 crno 가져와 participate 테이블에 추가
 				
