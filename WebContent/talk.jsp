@@ -1,5 +1,6 @@
 <%@ page import="dao.ChatroomDAO" %>
 <%@ page import="dto.MemberDTO" %>
+<%@ page import="dto.ParticipateDTO" %>
 <%@ page import="dao.MemberDAO" %>
 <%@ page language="java" contentType="application/json"
     pageEncoding="UTF-8"%>
@@ -12,16 +13,21 @@
 		
 		ChatroomDAO crDao = new ChatroomDAO();
 		
-		int count = crDao.setChatroom(mno1, mno2);
+		int isSuccess = crDao.setChatroom(mno1, mno2);
 		
 
-		if(count==2){
-
+		if(isSuccess==2){
+			ParticipateDTO partInfo = crDao.getParticipate(mno1, mno2);
 			%>{"result":"success",
-				"detail":"exist"}<%	
-		}else if(count == 1){
+				"detail":"exist",
+				"mno": <%=partInfo.getMno()%>,
+				"crno":<%=partInfo.getCrno()%>}<%	
+		}else if(isSuccess == 1){
+			ParticipateDTO partInfo = crDao.makeParticipate(mno1, mno2);
 			%>{"result":"success",
-				"detail":"new"}<%
+				"detail":"new",
+				"mno":<%=partInfo.getMno()%>,
+				"crno":<%=partInfo.getCrno()%>}<%
 		}else{
 			%>{"result":"fail"}<%
 		}

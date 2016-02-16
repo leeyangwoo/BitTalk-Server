@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.DBUtil;
 import dto.ChatroomDTO;
+import dto.ParticipateDTO;
 
 public class ChatroomDAO {
 	public List<ChatroomDTO> getChatroomList(){                     //모든 채팅방 목록
@@ -41,11 +42,14 @@ public class ChatroomDAO {
 		ResultSet rs = null;
 		try{
 			conn = DBUtil.getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM participate AS p INNER JOIN chatroom AS a ON p.crno = a.crno WHERE mno=?;");
+			stmt = conn.prepareStatement("SELECT * FROM chatroom WHERE crno IN (SELECT crno FROM participate WHERE mno = ?);");
 			stmt.setInt(1, mno);
 			rs = stmt.executeQuery();
 			while(rs.next()){
-				
+				ChatroomDTO chatroom = new ChatroomDTO();
+				chatroom.setCrno(rs.getInt(1));
+				chatroom.setNumparticipant(rs.getInt(2));
+				chatroomList.add(chatroom);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -120,5 +124,57 @@ public class ChatroomDAO {
 			DBUtil.close(conn, stmt, rs);
 		}
 		return numOfRoom;
+	}
+	
+	public ParticipateDTO getParticipate(int mno1, int mno2){    //대화중인 경우 대화상대번호와 방번호 리턴
+		ParticipateDTO partInfo = new ParticipateDTO();
+		partInfo.setMno(mno2);
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement("SELECT crno FROM participate "
+					+ "WHERE crno IN (SELECT A.crno FROM chatroom as A INNER JOIN participate as B "
+					+ "WHERE A.crno = B.crno AND numparticipant=2 AND mno=?) AND mno=?;");
+			// chatroom 테이블과 participate 조인 후 참가자수 2명이고 두 명이 참가하고 있는 채팅방 번호 조회
+			stmt.setInt(1, mno1);
+			stmt.setInt(2, mno2);
+			rs = stmt.executeQuery();
+			
+			if(rs.next()){
+				partInfo.setCrno(rs.getInt(1));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(conn, stmt, rs);
+		}
+		return partInfo;
+	}
+	
+	public ParticipateDTO makeParticipate(int mno1, int mno2){
+		ParticipateDTO partInfo = new ParticipateDTO();
+		partInfo.setMno(mno2);
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			conn = DBUtil.getConnection();
+			stmt = conn.prepareStatement("SELECT pa.crno FROM chatroom AS ch INNER JOIN "
+					+ "participate AS pa ON ch.crno = pa.crno ORDER BY ch.crno DESC LIMIT 1;");
+			//	가장 최근에 추가된 방번호 조회
+			
+			rs = stmt.executeQuery();
+			
+			if(rs.next()){
+				partInfo.setCrno(rs.getInt(1));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(conn, stmt, rs);
+		}
+		return partInfo;
 	}
 }
