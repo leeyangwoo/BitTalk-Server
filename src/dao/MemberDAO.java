@@ -43,8 +43,12 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try{
 			conn = DBUtil.getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM member WHERE mid LIKE ?;");
-			stmt.setString(1, "%"+mid+"%");
+			stmt = conn.prepareStatement("SELECT * FROM member WHERE mid LIKE ? OR "
+					+ "mid LIKE ? OR mid LIKE ? OR mid LIKE ?;");
+			stmt.setString(1, mid);
+			stmt.setString(2, mid+"_");
+			stmt.setString(3, mid+"__");
+			stmt.setString(4, mid+"___");
 			rs = stmt.executeQuery();
 			while(rs.next()){
 				MemberDTO member = new MemberDTO();
