@@ -169,4 +169,28 @@ public class MemberDAO {
 		return resultCount;
 		
 	}
+	public List<String> getTokens(int crno){
+		List<String> sendToList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			conn = DBUtil.getConnection();
+			String sql = "SELECT mtoken FROM participate AS p INNER JOIN member AS m ON "
+					+ "p.mno = m.mno WHERE crno=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, crno);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				String token = new String (rs.getString(1));
+				sendToList.add(token);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(conn,stmt,rs);
+		}
+		
+		return sendToList;
+	}
 }
