@@ -37,6 +37,7 @@ padding:5px;
 		<td><%=member.getMid() %></td>
 		<td><%=member.getMpasswd() %></td>
 		<td><%=member.getMname() %></td>
+		<td><%=member.getMtoken() %></td>
 </tr>
 <%}//for end %>
 </table>

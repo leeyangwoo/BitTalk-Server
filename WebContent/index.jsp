@@ -32,7 +32,7 @@ padding:5px;
 <h1>회원목록</h1>
 	<table>
 	<tr>
-		<th>mno</th><th>mid</th><th>mpasswd</th><th>mname</th>
+		<th>mno</th><th>mid</th><th>mpasswd</th><th>mname</th><th>mtoken</th>
 	</tr>
 	<%
 		MemberDAO dao = new MemberDAO();
@@ -44,6 +44,7 @@ padding:5px;
 			<td><%=member.getMid() %></td>
 			<td><%=member.getMpasswd() %></td>
 			<td><%=member.getMname() %></td>
+			<td><%=member.getMtoken() %></td>
 	</tr>
 	<%}//for end %>
 </table>
@@ -100,25 +101,6 @@ padding:5px;
 	%><tr>
 			<td><%=part.getMno()%></td>
 			<td><%=part.getCrno() %></td>
-	</tr>
-	<%}//for end %>
-</table>
-<h1>메세지목록</h1>
-	<table>
-	<tr>
-		<th>cmno</th><th>crno</th><th>senderno</th><th>msg</th><th>sendtime</th>
-	</tr>
-	<%
-		ChatmsgDAO cmDao = new ChatmsgDAO();
-		List<ChatmsgDTO> msgList = cmDao.getChatmsgList();
-		for(int i = 0; i < msgList.size(); i++){
-			ChatmsgDTO msg = msgList.get(i);
-	%><tr>
-			<td><%=msg.getCmno()%></td>
-			<td><%=msg.getCrno() %></td>
-			<td><%=msg.getSenderno() %></td>
-			<td><%=msg.getMsg() %></td>
-			<td><%=msg.getSendtime() %></td>
 	</tr>
 	<%}//for end %>
 </table>

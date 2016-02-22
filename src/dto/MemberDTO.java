@@ -5,6 +5,7 @@ public class MemberDTO {
 	private String mid;
 	private String mpasswd;
 	private String mname;
+	private String mtoken;
 	public int getMno() {
 		return mno;
 	}
@@ -28,6 +29,12 @@ public class MemberDTO {
 	}
 	public void setMname(String mname) {
 		this.mname = mname;
+	}
+	public String getMtoken() {
+		return mtoken;
+	}
+	public void setMtoken(String mtoken) {
+		this.mtoken = mtoken;
 	}
 	
 	

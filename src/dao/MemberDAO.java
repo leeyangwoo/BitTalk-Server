@@ -25,6 +25,7 @@ public class MemberDAO {
 				member.setMid(rs.getString(2));
 				member.setMpasswd(rs.getString(3));
 				member.setMname(rs.getString(4));
+				member.setMtoken(rs.getString(5));
 				memberList.add(member);
 			}
 		}catch(Exception e){
@@ -56,6 +57,7 @@ public class MemberDAO {
 				member.setMid(rs.getString(2));
 				member.setMpasswd(rs.getString(3));
 				member.setMname(rs.getString(4));
+				member.setMtoken(rs.getString(5));
 				memberList.add(member);
 			}
 		}catch(Exception e){
@@ -85,6 +87,7 @@ public class MemberDAO {
 				member.setMid(rs.getString(2));
 				member.setMpasswd(rs.getString(3));
 				member.setMname(rs.getString(4));
+				member.setMtoken(rs.getString(5));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -114,6 +117,7 @@ public class MemberDAO {
 				member.setMid(rs.getString(2));
 				member.setMpasswd(rs.getString(3));
 				member.setMname(rs.getString(4));
+				member.setMtoken(rs.getString(5));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -143,5 +147,26 @@ public class MemberDAO {
 			DBUtil.close(conn, stmt);
 		}
 		return resultCount;
+	}
+	
+	public int setToken(int mno, String mtoken){
+		int resultCount = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try{
+			conn = DBUtil.getConnection();
+			String sql = "UPDATE member SET mtoken=? WHERE mno=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, mtoken);
+			stmt.setInt(2, mno);
+			
+			resultCount = stmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtil.close(conn, stmt);
+		}
+		return resultCount;
+		
 	}
 }

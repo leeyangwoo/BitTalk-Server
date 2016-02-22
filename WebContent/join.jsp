@@ -14,6 +14,7 @@
 	member.setMid(request.getParameter("mid"));
 	member.setMpasswd(request.getParameter("mpasswd"));
 	member.setMname(request.getParameter("mname"));
+	member.setMtoken(request.getParameter("mtoken"));
 
 	int count = dao.setMember(member);
 

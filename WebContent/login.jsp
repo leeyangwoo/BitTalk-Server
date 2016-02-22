@@ -19,7 +19,8 @@
 			"member":{"mno":<%=loginMember.getMno()%>,
 						"mid":<%=loginMember.getMid()%>,
 						"mpasswd":<%=loginMember.getMpasswd()%>,
-						"mname":<%=loginMember.getMname()%>}}<%
+						"mname":<%=loginMember.getMname()%>,
+						"mtoken":<%=loginMember.getMtoken()%>}}<%
 		System.out.println(mid+" "+mpasswd);
 	}else{
 		%>{"result":"fail"}<%
