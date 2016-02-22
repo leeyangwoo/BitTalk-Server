@@ -34,9 +34,20 @@
         </ul>
       </li>
     </ul>
+  </li><br>
+  <li>
+    <ul>
+      <li>초대하기 URL: <b>192.168.1.35/BitTalkServer/invite.jsp</b> (채팅방참가자수 +1, 참가테이블 레코드 추가)</li>
+      <li>Parameter : <b>mno</b>(초대받는 사람)/ <b>crno</b>(대화할 방 번호)</li>
+      <li>return : {"result":"success"} / {"result":"fail"}</li>
+    </ul>
+  </li><br>
+  <li>
+    <ul>
+      <li>Token설정 URL: <b>192.168.1.35/BitTalkServer/settoken.jsp</b> (member token 추가)</li>
+      <li>Parameter : <b>mno</b>(member no)/ <b>mtoken</b>(토큰 값)</li>
+      <li>return : {"result":"success"} / {"result":"fail"}</li>
+    </ul>
   </li>
 </ul>
 <hr>
-invite.jsp<br>
-채팅방 레코드 추가<br>
-푸시메세지 알아보기
