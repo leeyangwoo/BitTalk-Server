@@ -8,8 +8,9 @@
     
 <%
 	int crno = Integer.parseInt(request.getParameter("crno"));
+	int mno = Integer.parseInt(request.getParameter("mno"));
 	MemberDAO mDao = new MemberDAO();
-	List<MemberDTO> partMemberList= mDao.getPartMemberList(crno);
+	List<MemberDTO> partMemberList= mDao.getPartMemberList(crno,mno);
 	
 	MemberDTO[] partMemberArr = new MemberDTO[partMemberList.size()];
 	for(int i=0;i<partMemberList.size();i++){
