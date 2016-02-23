@@ -10,10 +10,10 @@
 	if(member != null){
 		%>{"result":"success",
 			"mno":<%=member.getMno()%>,
-			"mid":<%=member.getMid()%>,
-			"mpasswd":<%=member.getMpasswd()%>,
-			"mname":<%=member.getMname()%>,
-			"mtoken":<%=member.getMtoken()%>}<%
+			"mid":"<%=member.getMid()%>",
+			"mpasswd":"<%=member.getMpasswd()%>",
+			"mname":"<%=member.getMname()%>",
+			"mtoken":"<%=member.getMtoken()%>"}<%
 	}else{
 		%>{"result":"fail"}<%
 	}
