@@ -20,7 +20,7 @@
 						"mid":<%=loginMember.getMid()%>,
 						"mpasswd":<%=loginMember.getMpasswd()%>,
 						"mname":<%=loginMember.getMname()%>,
-						"mtoken":<%=loginMember.getMtoken()%>}}<%
+						"mtoken":"<%=loginMember.getMtoken()%>"}}<%
 		System.out.println(mid+" "+mpasswd);
 	}else{
 		%>{"result":"fail"}<%
