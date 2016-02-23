@@ -169,21 +169,24 @@ public class MemberDAO {
 		return resultCount;
 		
 	}
-	public List<String> getTokens(int crno){
-		List<String> sendToList = new ArrayList<>();
+	public List<MemberDTO> getPartMemberList(int crno){                 //모든 회원리스트
+		List<MemberDTO> memberList = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try{
 			conn = DBUtil.getConnection();
-			String sql = "SELECT mtoken FROM participate AS p INNER JOIN member AS m ON "
+			String sql = "SELECT m.mno, m.mid, m.mtoken FROM participate AS p INNER JOIN member AS m ON "
 					+ "p.mno = m.mno WHERE crno=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, crno);
 			rs = stmt.executeQuery();
 			while(rs.next()){
-				String token = new String (rs.getString(1));
-				sendToList.add(token);
+				MemberDTO member = new MemberDTO();
+				member.setMno(rs.getInt(1));
+				member.setMid(rs.getString(2));
+				member.setMtoken(rs.getString(3));
+				memberList.add(member);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -191,6 +194,6 @@ public class MemberDAO {
 			DBUtil.close(conn,stmt,rs);
 		}
 		
-		return sendToList;
+		return memberList;
 	}
 }

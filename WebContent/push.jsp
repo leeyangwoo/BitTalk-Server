@@ -9,14 +9,14 @@
 <%
 	int crno = Integer.parseInt(request.getParameter("crno"));
 	MemberDAO mDao = new MemberDAO();
-	List<String> tokens = mDao.getTokens(crno);
+	List<MemberDTO> partMemberList= mDao.getPartMemberList(crno);
 	
-	String[] tokenArr = new String[tokens.size()];
-	for(int i=0;i<tokens.size();i++){
-		tokenArr[i] = tokens.get(i);
+	MemberDTO[] partMemberArr = new MemberDTO[partMemberList.size()];
+	for(int i=0;i<partMemberList.size();i++){
+		partMemberArr[i] = partMemberList.get(i);
 	}
-	String tokenArrJson = new Gson().toJson(tokenArr);
+	String partMemberArrJson = new Gson().toJson(partMemberArr);
 	
 	
 %>
-<%=tokenArrJson%>
+<%=partMemberArrJson%>
