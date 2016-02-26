@@ -109,7 +109,7 @@ public class ChatroomDAO {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement("SELECT count(*) FROM participate "
 					+ "WHERE crno IN (SELECT A.crno FROM chatroom as A INNER JOIN participate as B "
-					+ "WHERE A.crno = B.crno AND numparticipant=2 AND mno=?) AND mno=?;");
+					+ "ON A.crno = B.crno WHERE numparticipant=2 AND mno=?) AND mno=?;");
 			// chatroom 테이블과 participate 조인 후 참가자수 2명이고 두 명이 참가하고 있는 채팅방 수 조회, 방이 있다면 1 없다면 0
 			stmt.setInt(1, mno1);
 			stmt.setInt(2, mno2);
@@ -136,7 +136,7 @@ public class ChatroomDAO {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement("SELECT crno FROM participate "
 					+ "WHERE crno IN (SELECT A.crno FROM chatroom as A INNER JOIN participate as B "
-					+ "WHERE A.crno = B.crno AND numparticipant=2 AND mno=?) AND mno=?;");
+					+ "ON A.crno = B.crno WHERE numparticipant=2 AND mno=?) AND mno=?;");
 			// chatroom 테이블과 participate 조인 후 참가자수 2명이고 두 명이 참가하고 있는 채팅방 번호 조회
 			stmt.setInt(1, mno1);
 			stmt.setInt(2, mno2);
